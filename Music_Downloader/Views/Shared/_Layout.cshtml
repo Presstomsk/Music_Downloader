@@ -1,0 +1,37 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MP3 Downloader</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body class="custom-background">
+    <div id="wrapper" class="container hfeed">
+        <header id="header" class="clearfix" role="banner">
+            <div id="logo" class="clearfix">
+                <h1 class="site-title"><a href="/" rel="home">MP3 Downloader</a></h1>                
+            </div>
+        </header>
+        <div id="wrap" class="clearfix">
+            <section id="content" role="main">
+                <div class="clearfix">
+                    <div class="widget">
+                        @RenderBody()
+                    </div>
+                </div>
+            </section>            
+        </div>
+    </div>
+    <div id="footer-wrap" class="container">
+        <footer id="footer" class="clearfix" role="contentinfo">
+            <div id="footer-text">
+                <span class="credit-link"> Designed by Permiakov Roman</span>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

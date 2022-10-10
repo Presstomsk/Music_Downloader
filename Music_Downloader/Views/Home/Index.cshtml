@@ -1,0 +1,50 @@
+﻿@using Music_Downloader.Controllers
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<Song>;
+<center><form asp-controller="Home" asp-action="GetNewData">
+    <p>
+        <input type="text" name="ArtistName" />
+        <input type="submit" value="Search" />
+    </p>
+</form></center><br>
+<div style="font-size:14px; position: relative; min-height: 1000px; padding: 10px 20px;">
+    <div class="scroll-table">
+        <table style="border-collapse: collapse;  border-spacing: 0;">
+            <thead>
+                <tr>  
+                    <th class="col00"></th>
+                    <th class="col11"><center>Song Name</center></th>
+                    <th class="col22"><center>Download</center></th>
+                </tr>
+            </thead>
+        </table>
+        <div class="scroll-table-body">
+            <table style="border-collapse: collapse;  border-spacing: 0;">
+                <tbody>                    
+                    @if (Model != null && Model.Count>0)
+                    {
+                        @foreach (var song in Model)
+                        {
+                            <tr>
+                                <td class="col0"><center><img src="@song.Src"></center></td>
+                                <td class="col1"><center><label>@song.Name</label></center></td>
+                                <td class="col2">
+                                    <center>
+                                        <input class="btn-true" type="button" value="Download" onClick='location.href="https://localhost:44380/Home/Action?songId=@song.Id"'>
+                                    </center>
+                                </td>
+                            </tr>
+                        }
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
