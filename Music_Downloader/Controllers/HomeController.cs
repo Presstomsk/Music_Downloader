@@ -5,9 +5,12 @@ using Music_Downloader.Models;
 using Music_Downloader.Models.Mp3Collection;
 using Music_Downloader.Services;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using Song = Music_Downloader.Models.Song;
 
 namespace Music_Downloader.Controllers
@@ -43,16 +46,16 @@ namespace Music_Downloader.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult Action(string songId)
         {
             var http = new HTTP();
             var response = http.GetDownloadUrl(songId);
             var info = JsonConvert.DeserializeObject<Models.DownloadUrl.Rootobject>(response);
-
+            string link = info.result?.download_url; //ссылка         
             Process.Start(new ProcessStartInfo
             {
-                FileName = $"{info.result?.download_url}",
+                FileName = link,
                 UseShellExecute = true
             });
 

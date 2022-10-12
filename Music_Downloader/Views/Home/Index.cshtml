@@ -4,12 +4,14 @@
     ViewData["Title"] = "Home Page";
 }
 @model List<Song>;
-<center><form asp-controller="Home" asp-action="GetNewData">
+<center>
+    <form asp-controller="Home" asp-action="GetNewData" method="post">
     <p>
         <input type="text" name="ArtistName" />
         <input type="submit" value="Search" />
     </p>
-</form></center><br>
+    </form>
+</center><br>
 <div style="font-size:14px; position: relative; min-height: 1000px; padding: 10px 20px;">
     <div class="scroll-table">
         <table style="border-collapse: collapse;  border-spacing: 0;">
@@ -33,7 +35,11 @@
                                 <td class="col1"><center><label>@song.Name</label></center></td>
                                 <td class="col2">
                                     <center>
-                                        <input class="btn-true" type="button" value="Download" onClick='location.href="https://localhost:44380/Home/Action?songId=@song.Id"'>
+                                        <form method="post" asp-controller="Home" asp-action="Action">
+                                            @Html.Hidden("songId", @song.Id)
+                                            <input class="btn-true" type="submit" value="Download" />
+                                        @*<input class="btn-true" type="button" value="Download" onClick='location.href="https://localhost:44380/Home/Action?songId=@song.Id"'>*@
+                                        </form>
                                     </center>
                                 </td>
                             </tr>
